@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <style>
+		div {
+			position: absolute;
+			left: 10px;
+			top: 50px;
+			padding: auto;
+			color: white
+		}
+		h1 {
+			color: green;
+		}
+	</style>
+    </head>
+
+    <body>
+        <div id="gfg">
+            <h1>BhojrajSinghShekhawat</h1>
+        </div>
+        <center>
+            <button onclick="start()">Start the animation</button>
+            <button onclick="Stop()">Stop the animation</button>
+        </center>
+        <script type="text/javascript">
+		var x = document.getElementById("gfg");
+
+		// Initializing variables
+		var requestId;
+		var stopped;
+		var starttime;
+
+		function startAnim(time) {
+
+			// Set left style to a function of time if it is not stopped
+			if (!stopped) {
+
+				// We use the difference between time returned
+				// by Data.now() and the animation starttime
+				x.style.left = ((Date.now() - starttime) / 10 % 700) + "px";
+				requestId = window.requestAnimationFrame(startAnim);
+			}
+		}
+
+		function start() {
+
+			// Return the number of milliseconds since 1970/01/01:
+			starttime = Date.now();
+
+			// Starting point of animation
+			requestId = window.requestAnimationFrame(startAnim);
+			// stopped = false; // Means animation will not stop
+		}
+        function stop() {
+            cancelAnimationFrame(requestId)
+        }
+	</script>
+    </body>
+
+</html>
